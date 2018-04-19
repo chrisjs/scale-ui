@@ -47,7 +47,7 @@ for dat in f:
     mq.publish("scale/records", dat)
     time.sleep(delay)
 
-print "Shutdown: ", e
+print "Shutdown: "
 f.close()
 mq.loop_stop()
 mq.disconnect()
