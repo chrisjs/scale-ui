@@ -12,7 +12,7 @@ zfname = 'dat1.json.gz'  # real data, sampled at 2 Hz
 #zfname = 'dat2.json.gz' # large data, sampled around 5 hz
 
 delay = 0.5 # realtime - real scale data is sampled at 2 Hz
-#delay = 2.0 # slow playback - only for testing
+delay = 2.0 # slow playback - only for testing
 
 mqtt_host = 'localhost' # for real setup, using local mosquitto
 #mqtt_host = 'iot.eclipse.org' # for testing

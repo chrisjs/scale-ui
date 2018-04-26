@@ -1,0 +1,47 @@
+<html>
+    <body onload="setup();" >
+        
+        <h1>Equine Scale</h1>
+        <pre>Msg Value: <span id="val">xxx</span></pre>
+        <h3>Time:<span id="tm">xxx</span>
+         Weights 1:<span id="w1">xxx</span>
+         2:<span id="w2">xxx</span>
+         3:<span id="w3">xxx</span>
+         4:<span id="w4">xxx</span></h3>
+        <svg width="480" height="300"></svg>
+
+    </body>
+    <script language="javascript">
+
+function setup() {
+
+    // Create WebSocket connection.
+    const socket = new WebSocket('ws://localhost:3000/data');
+
+    // Connection opened
+    socket.addEventListener('open', function (event) {
+        msg = Object();
+        msg.cmd = 'hello';
+        socket.send( JSON.stringify( msg ) );
+    });
+
+    // Listen for messages
+    socket.addEventListener('message', function (event) {
+        console.log('Message from server ', event.data);
+        document.getElementById('val').innerHTML = event.data;
+        dat = JSON.parse(event.data);
+        document.getElementById('tm').innerHTML = dat[0];
+        d3.select('#w1').text(dat[1]);
+        d3.select('#w2').text(dat[2]);
+        d3.select('#w3').text(dat[3]);
+        d3.select('#w4').text(dat[4]);
+        d3.select("#w3").style("color", "red");
+        // d3.selectAll("span").style("color", "red");
+    });
+
+}
+
+    </script>
+    <!-- <script src="jquery-3.3.1.min.js"></script> -->
+    <script src="d3.min.js"></script>
+</html>
