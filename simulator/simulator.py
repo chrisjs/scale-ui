@@ -35,7 +35,7 @@ except Exception, e:
     raise ValueError("problem connecting to "+mqtt_host)
 
 #mq.subscribe("mytopic", 0)
-mq.publish("scale/records", "start records")
+#mq.publish("scale/records", "start records")
 #mq.publish("hello/world", "my message")
 #mq.loop_start()
 

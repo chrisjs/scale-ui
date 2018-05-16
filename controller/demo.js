@@ -39,11 +39,12 @@ mq.on('message', function (topic, message) {
             rec[3].weight,
             rec[4].weight
         ];
-		console.log('uimsg= '+ uimsg);
+//		console.log('uimsg= '+ uimsg);
 
         // send records data to UI client
         if (sock) {
             sock.send( JSON.stringify(uimsg) );
+            console.log('sent');
         }
 
     }
@@ -56,14 +57,14 @@ mq.on('message', function (topic, message) {
  * Web Socket
  */
 
-app.ws('/data', (ws, req) => {
-    ws.on('connect', () => {
+app.ws('/data', function (ws, req) {
+    ws.on('connect', function ()  {
         console.log('ws connect');
     });
-    ws.on('open', () => {
+    ws.on('open', function() {
         console.log('ws open');
     });
-    ws.on('message', msgstring => {
+    ws.on('message',  function(msgstring)  {
         console.log('ws message: '+msgstring);
         command = JSON.parse(msgstring.toString());
         console.log('ws got cmd: '+command.cmd);
@@ -89,11 +90,14 @@ app.ws('/data', (ws, req) => {
         sock.send(msgstring);
         //ws.send(msgstring);
     });
-    ws.on('close', () => {
+
+    ws.on('close', function() {
         console.log('ws close');
         sock = null;
     });
+    
 });
+
 
 
 
