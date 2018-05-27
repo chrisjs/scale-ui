@@ -30,6 +30,7 @@ mq.on('connect', function () {
 });
 
 mq.on('message', function (topic, message) {
+
     // message is Buffer
     var msg = message.toString();
     if (topic === 'scale/system') {
@@ -52,8 +53,10 @@ mq.on('message', function (topic, message) {
 
             // send records data to UI client
             if (sock) {
-                sock.send(JSON.stringify(uimsg));
-                logger.into('sent');
+                sock.send(uiMsg);
+                logger.debug('sent');
+            } else {
+                logger.debug("Socket is null");
             }
         } catch (mqttErr) {
             logger.error("Error sending message: " + JSON.stringify(mqttErr));
@@ -75,7 +78,6 @@ app.ws('/data', function (ws, req) {
     });
     ws.on('open', function () {
         logger.debug('ws open');
-        //sock = ws;
     });
     ws.on('message', function (msgstring) {
         logger.info('ws message: ' + msgstring);
@@ -99,9 +101,9 @@ app.ws('/data', function (ws, req) {
         else if (command.cmd === 'deleteSession') {
             logger.silly('TODO: delete session: to remove session and data');
         }
-        sock = ws;
-        sock.send(msgstring);
-        //ws.send(msgstring);
+        if (sock == null) {
+            sock = ws;
+        }
     });
 
     ws.on('close', function () {
