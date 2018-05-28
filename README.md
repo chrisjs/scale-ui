@@ -36,7 +36,8 @@ To start the controller:
  * Navigate to the `controller` directory
  * If this is the first time running the controller, type `npm install`
  * Run `npm start`
- * Launch a web browser and navigate to http://localhost:3000/
+ * Open *another* terminal and navigate to the same directory
+ * Run `npm run rstart`. A web browser window will open, and start rendering data
 
 
 Future considerations for the controller:
@@ -79,4 +80,7 @@ Values received in data record:
  * {low,high}_byte -- raw bytes received from microcontroller reading HX711 scale sensor chip (bytes for diagnosis only).
  * weight -- weight in KG of load on scale.
 
+References:
 
+ * React-Vis: http://uber.github.io/react-vis/
+ 
