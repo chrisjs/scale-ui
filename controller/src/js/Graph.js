@@ -19,7 +19,7 @@ class Graph extends React.Component {
         if (scale_settings.length < 1) {
             scale_settings = [100, 100, 100, 100, 100];
         }
-        console.log("SCALE: " + JSON.stringify(scale_settings));
+
         const BarSeries = VerticalBarSeriesCanvas; // : VerticalBarSeries;
         const graphData = [
             { x: 2, y: scale_settings[1] / 100 },

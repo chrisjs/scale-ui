@@ -13,7 +13,7 @@ var logger = new winston.Logger({
         })
     ]
 });
-logger.level = 'silly';
+logger.level = process.env.LOG_LEVEL;
 
 var sock = null;
 
@@ -39,13 +39,14 @@ mq.on('message', function (topic, message) {
         try {
             logger.debug('record: ' + msg);
             rec = JSON.parse(message.toString('utf8'));
-            logger.debug('record: ts= ' + rec.timestamp);
+
             // make WS live data message 
-            let uiObj = [rec.timestamp,
-            rec[1].weight,
-            rec[2].weight,
-            rec[3].weight,
-            rec[4].weight
+            let uiObj = [
+                rec.timestamp,
+                rec[1].weight,
+                rec[2].weight,
+                rec[3].weight,
+                rec[4].weight
             ];
 
             let uiMsg = JSON.stringify(uiObj);
