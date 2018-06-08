@@ -31,7 +31,7 @@ class App extends Component {
         const that = this;
 
         // Create WebSocket connection.
-        const socket = new WebSocket('ws://localhost:3000/data');
+        const socket = new WebSocket('ws://192.168.4.1:3000/data');
 
         // Connection opened
         socket.addEventListener('open', function (event) {
