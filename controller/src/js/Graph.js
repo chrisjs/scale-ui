@@ -15,6 +15,7 @@ class Graph extends React.Component {
     }
 
     render() {
+        const xaxis = ['', 'Front Left', '', 'Front Right', '', 'Back Left', '', 'Back Right', ''];
         let scale_settings = this.props.scale_settings;
         if (scale_settings.length < 1) {
             scale_settings = [1, 1, 1, 1, 1];
@@ -30,13 +31,13 @@ class Graph extends React.Component {
         return (
             <div>
                 <XYPlot
-                    yDomain={[0, 200]}
+                    yDomain={[0, 660]}
                     width={500}
                     height={400}
                     stackBy="y">
                     <VerticalGridLines />
                     <HorizontalGridLines />
-                    <XAxis />
+                    <XAxis tickFormat={(v, i) => v % 2 == 0 ? xaxis[i] : ``} tickLabelAngle={0} />
                     <YAxis />
                     <BarSeries
                         data={graphData} />

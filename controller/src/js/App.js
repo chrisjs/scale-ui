@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import Graph from "./Graph";
-import Radar from "./Radar";
 
 class App extends Component {
     constructor() {
@@ -17,9 +16,6 @@ class App extends Component {
         return (
             <div>
                 <Graph
-                    scale_settings={scale_settings}
-                />
-                <Radar
                     scale_settings={scale_settings}
                 />
             </div>
