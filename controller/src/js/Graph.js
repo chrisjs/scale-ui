@@ -28,6 +28,7 @@ class Graph extends React.Component {
             { x: 6, y: scale_settings[3] },
             { x: 8, y: scale_settings[4] }
         ];
+        const totalWeight = scale_settings[1] + scale_settings[2] + scale_settings[3] + scale_settings[4];
         return (
             <div>
                 <XYPlot
@@ -42,6 +43,9 @@ class Graph extends React.Component {
                     <BarSeries
                         data={graphData} />
                 </XYPlot>
+                <div style={{ textAlign: 'center' }}>
+                    Total: {totalWeight}
+                </div>
             </div>
         );
     }
