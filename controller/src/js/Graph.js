@@ -28,7 +28,7 @@ class Graph extends React.Component {
             { x: 6, y: scale_settings[3] },
             { x: 8, y: scale_settings[4] }
         ];
-        const totalWeight = scale_settings[1] + scale_settings[2] + scale_settings[3] + scale_settings[4];
+        const totalWeight = (parseFloat(scale_settings[1]) + parseFloat(scale_settings[2]) + parseFloat(scale_settings[3]) + parseFloat(scale_settings[4])).toFixed(2);
         return (
             <div>
                 <XYPlot
